@@ -1,0 +1,25 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: kafkapubsubnoauth
+  namespace: default
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    - name: brokers # Required. Kafka broker connection setting name.namespace.cluster.hostport
+      value: "kafka.kafka-ca1.svc.cluster.local:9092"
+    - name: consumerGroup # Optional. Used for input bindings.
+      value: "group1"
+    - name: clientID # Optional. Used as client tracing ID by Kafka brokers.
+      value: "my-dapr-app-id"
+    - name: authType # Required.
+      value: "none"
+    - name: maxMessageBytes # Optional.
+      value: 1024
+    - name: consumeRetryInterval # Optional.
+      value: 200ms
+    - name: version # Optional.
+      value: 0.10.2.0
+    - name: disableTls
+      value: "true"
